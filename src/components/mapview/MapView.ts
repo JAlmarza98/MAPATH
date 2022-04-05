@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { defineComponent, ref, onMounted, watch } from 'vue'
-import { usePlacesStore } from '@/composables'
+import { useMapStore, usePlacesStore } from '@/composables'
 import Mapboxgl from 'mapbox-gl'
 
 export default defineComponent({
@@ -8,6 +8,7 @@ export default defineComponent({
   setup () {
     const mapElement = ref<HTMLDivElement>()
     const { userLocation, isUserLocationReady } = usePlacesStore()
+    const { setMap } = useMapStore()
 
     const initMap = async () => {
       if (!mapElement.value) return
@@ -17,10 +18,25 @@ export default defineComponent({
 
       const map = new Mapboxgl.Map({
         container: mapElement.value,
-        style: 'mapbox://styles/mapbox/streets-v11',
+        style: 'mapbox://styles/mapbox/dark-v10',
         center: userLocation.value,
         zoom: 15
       })
+
+      const mylocationPopup = new Mapboxgl.Popup()
+        .setLngLat(userLocation.value)
+        .setHTML(`
+          <h4>Aqui estoy</h4>
+          <p>Actualmente en Parque Coimbra</p>
+          <p>${userLocation.value}</p>
+        `)
+
+      const myLocationMarker = new Mapboxgl.Marker()
+        .setLngLat(userLocation.value)
+        .setPopup(mylocationPopup)
+        .addTo(map)
+
+      setMap(map)
     }
 
     onMounted(() => {
