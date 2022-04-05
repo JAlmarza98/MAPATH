@@ -10,6 +10,11 @@ const actions: ActionTree<MapState, StateInterface> = {
   async getRouteBetweenPoints ({ commit }, { start, end }: { start: LngLat, end: LngLat }) {
     const resp = await directionsAPI.get<DirectionsResponse>(`${start.join(',')};${end.join(',')}`)
 
+    commit('setDistanceDuration', {
+      distance: resp.data.routes[0].distance,
+      duration: resp.data.routes[0].duration
+    })
+
     commit('setRoutePolyline', resp.data.routes[0].geometry.coordinates)
   }
 }

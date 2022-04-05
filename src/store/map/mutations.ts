@@ -11,6 +11,15 @@ const mutation: MutationTree<MapState> = {
     state.map = map
   },
 
+  setDistanceDuration (state: MapState, { distance, duration }: { distance: number, duration: number }) {
+    let kms = distance / 1000
+    kms = Math.round(kms * 100)
+    kms /= 100
+
+    state.distance = kms
+    state.duration = Math.floor(duration / 60)
+  },
+
   setPlaceMarkers (state: MapState, places: Feature[]) {
     state.markers.forEach(marker => marker.remove())
     state.markers = []
@@ -43,7 +52,7 @@ const mutation: MutationTree<MapState> = {
     }
   },
 
-  setRoutePolyline (state, coords: number[][]) {
+  setRoutePolyline (state: MapState, coords: number[][]) {
     const start = coords[0]
 
     const bounds = new Mapboxgl.LngLatBounds(
