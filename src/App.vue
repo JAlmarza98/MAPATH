@@ -3,16 +3,32 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
   </div> -->
-  <router-view/>
-  <img src="./assets/logo.png" alt="Vue Logo" class="logo">
+  <router-view />
+  <div class="d-flex version">
+    <img src="./assets/logo.png" alt="Vue Logo" class="logo" />
+    <span class="text-white align-bottom">{{vueVersion}}</span>
+  </div>
 </template>
+
+<script lang="ts">
+import { defineComponent, computed, version } from 'vue'
+
+export default defineComponent({
+  name: 'App',
+  setup () {
+    return {
+      vueVersion: computed(() => version)
+    }
+  }
+})
+
+</script>
 
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* text-align: center; */
   color: #2c3e50;
 }
 
@@ -29,10 +45,13 @@
   color: #42b983;
 }
 
-.logo{
+.logo {
+  width: 30px;
+}
+
+.version {
   position: fixed;
   bottom: 30px;
   right: 30px;
-  width: 60px;
 }
 </style>

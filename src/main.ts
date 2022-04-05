@@ -1,10 +1,12 @@
 import { createApp } from 'vue'
+import { mapboxApiKey } from '@/env/contants'
+
 import App from './App.vue'
 import router from './router'
 import store from './store'
 
 import mapboxgl from 'mapbox-gl'
-mapboxgl.accessToken = 'pk.eyJ1IjoiamFsbWFyemE5OCIsImEiOiJjbDFrdHNjOTYwNDNuM3BrcTVxNXFhazUxIn0.Vyy7eE6gAO7aeDqjv2Ifzw'
+mapboxgl.accessToken = mapboxApiKey
 
 if (!navigator.geolocation) {
   alert('Tu navegador no soporta la geolocalización')

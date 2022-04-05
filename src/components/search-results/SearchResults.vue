@@ -1,13 +1,20 @@
 <script lang="ts" src="./SearchResults.ts"/>
 
 <template>
-  <ul class="list-group mt-3">
-    <li class="list-group-item list-group-item-action">
-      <h5>Nombre del lugar</h5>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci magnam quam nobis labore voluptate iusto beatae voluptatum distinctio laudantium officia ut veritatis eos fugit, libero nemo.</p>
+  <div class="alert alert-light text-center" v-if="isLoadingPlaces">
+    <h5>Cargando</h5>
+    <span>Espere por favor...</span>
+  </div>
+  <ul class="list-group mt-3" v-else-if="places.length > 0">
+    <li class="list-group-item list-group-item-action"
+      v-for="place in places" :key="place.id"
+      :class="{'active': place.id === activePlace}"
+      @click="onPlaceClick(place)">
+      <h5>{{place.text}}</h5>
+      <p>{{place.place_name}}</p>
         <div align="right">
-          <button class="btn btn-outline-light btn-sm">
-              Direcciones
+          <button class="btn btn-outline-light btn-sm" :class="(place.id === activePlace)?'btn-primary':'btn-outline-light'">
+              Direcciones <i class="fa-solid fa-route"></i>
           </button>
         </div>
     </li>
@@ -27,5 +34,10 @@ h5 {
 }
 p {
   font-size: 11px !important;
+}
+.active {
+  background-color: rgb(173, 173, 173);
+  color: rgba(0, 0, 0, 0.75);
+  border: none;
 }
 </style>
