@@ -6,7 +6,7 @@
   <router-view />
   <div class="d-flex version">
     <img src="./assets/logo.png" alt="Vue Logo" class="logo" />
-    <span class="text-white align-bottom">{{vueVersion}}</span>
+    <span class="text-white version-number">{{vueVersion}}</span>
   </div>
 </template>
 
@@ -53,5 +53,9 @@ export default defineComponent({
   position: fixed;
   bottom: 30px;
   right: 30px;
+}
+
+.version-number {
+  margin-top: 15px;
 }
 </style>

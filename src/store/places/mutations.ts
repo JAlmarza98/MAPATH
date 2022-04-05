@@ -1,4 +1,4 @@
-import { Feature } from '@/intefaces/places'
+import { Feature } from '@/interfaces/places'
 import { MutationTree } from 'vuex'
 import { PlacesState } from './state'
 

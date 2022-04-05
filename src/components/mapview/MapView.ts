@@ -27,7 +27,6 @@ export default defineComponent({
         .setLngLat(userLocation.value)
         .setHTML(`
           <h4>Aqui estoy</h4>
-          <p>Actualmente en Parque Coimbra</p>
           <p>${userLocation.value}</p>
         `)
 

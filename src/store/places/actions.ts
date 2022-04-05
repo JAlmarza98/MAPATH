@@ -3,7 +3,7 @@ import { searchAPI } from '@/api'
 
 import { PlacesState } from './state'
 import { StateInterface } from '../index'
-import { Feature, PlacesResponse } from '@/intefaces/places'
+import { Feature, PlacesResponse } from '@/interfaces/places'
 
 const actions: ActionTree<PlacesState, StateInterface> = {
   getInitialLocation ({ commit }) {

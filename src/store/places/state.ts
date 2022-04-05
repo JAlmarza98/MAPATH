@@ -1,4 +1,4 @@
-import { Feature } from '@/intefaces/places'
+import { Feature } from '@/interfaces/places'
 
 export interface PlacesState {
   isLoading: boolean

@@ -1,8 +1,9 @@
 import { computed } from 'vue'
 import { useStore } from 'vuex'
 import { StateInterface } from '@/store'
-import { Feature } from '@/intefaces/places'
+import { Feature } from '@/interfaces/places'
 import Mapboxgl from 'mapbox-gl'
+import { LngLat } from '@/store/map/actions'
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const useMapStore = () => {
@@ -18,6 +19,9 @@ export const useMapStore = () => {
 
     // Mutations
     setMap: (map: Mapboxgl.Map) => store.commit('map/setMap', map),
-    setPlaceMarkers: (places: Feature[]) => store.commit('map/setPlaceMarkers', places)
+    setPlaceMarkers: (places: Feature[]) => store.commit('map/setPlaceMarkers', places),
+
+    // Actions
+    getRouteBetweenPoints: (start: LngLat, end :LngLat) => store.dispatch('map/getRouteBetweenPoints', { start, end })
   }
 }

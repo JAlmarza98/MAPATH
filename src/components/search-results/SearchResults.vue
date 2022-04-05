@@ -13,7 +13,9 @@
       <h5>{{place.text}}</h5>
       <p>{{place.place_name}}</p>
         <div align="right">
-          <button class="btn btn-outline-light btn-sm" :class="(place.id === activePlace)?'btn-primary':'btn-outline-light'">
+          <button class="btn btn-outline-light btn-sm"
+            :class="(place.id === activePlace)?'btn-primary':'btn-outline-light'"
+            @click.self="getRouteDirections(place)">
               Direcciones <i class="fa-solid fa-route"></i>
           </button>
         </div>
